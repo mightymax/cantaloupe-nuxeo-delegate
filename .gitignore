@@ -1,0 +1,15 @@
+.env
+
+lib/build
+lib/bin
+
+.vscode/settings.json
+
+.gradle
+gradle
+gradlew
+gradlew.bat
+.DS_Store
+.vscode/launch.json
+cantaloupe.minimal.properties
+.idea

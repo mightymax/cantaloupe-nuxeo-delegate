@@ -1,0 +1,44 @@
+// Change path to Cantaloupe Jar to feed your needs and rename to 'build.gradle'
+
+def cantaloupe_jar = "/opt/cantaloupe/cantaloupe-6.0-SNAPSHOT.jar"
+
+plugins {
+    id 'java-library'
+}
+
+group "io.memorix.cantaloupe"
+version "1.0"
+archivesBaseName = "io.memorix.cantaloupe"
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    testLogging.showStandardStreams = true
+    jvmArgs '-Dcantaloupe.config=cantaloupe.minimal.properties'
+}
+
+dependencies {
+    api 'com.google.code.gson:gson:2.8.9'
+    api 'io.github.cdimascio:dotenv-java:2.2.0'
+
+    implementation(files(cantaloupe_jar))
+    testImplementation(files(cantaloupe_jar))
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+
+
+}
+
+tasks.named('test') {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'io.memorix.cantaloupe.Main'
+        )
+    }
+}

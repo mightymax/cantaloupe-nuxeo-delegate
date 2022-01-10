@@ -1,0 +1,19 @@
+# These are the minimal properties for Cantaloupe to run against Nuxeo using this Delegate
+# and start Cantaloupe as a standalone server
+# See https://github.com/cantaloupe-project/cantaloupe/blob/develop/cantaloupe.properties.sample
+
+http.enabled = true
+http.host = 0.0.0.0
+http.port = 8182
+
+max_pixels = 10000000
+source.static = HttpSource
+delegate_script.enabled = true
+
+HttpSource.lookup_strategy = ScriptLookupStrategy
+
+# Specific properties for the Nuxeo Delegate:
+nuxeo.url=http:/example.com/nuxeo
+nuxeo.username=Username
+nuxeo.secret=Password
+

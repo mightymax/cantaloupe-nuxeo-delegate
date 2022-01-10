@@ -1,0 +1,32 @@
+plugins {
+    id 'java-library'
+}
+
+def CANTALOUPE_JAR = "/Users/mlindeman/Code/software/cantaloupe/target/cantaloupe-6.0-SNAPSHOT.jar"
+group "io.memorix"
+version "1.0"
+archivesBaseName = "cantaloupe-nuxeo-delegate"
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+test {
+    testLogging.showStandardStreams = true
+    jvmArgs '-Dcantaloupe.config=cantaloupe.minimal.properties'
+}
+
+dependencies {
+    api 'com.google.code.gson:gson:2.8.9'
+
+    compileOnly(files(CANTALOUPE_JAR))
+    testImplementation(files(CANTALOUPE_JAR))
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+    testImplementation 'commons-cli:commons-cli:1.5.0'
+}
+
+tasks.named('test') {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+}
